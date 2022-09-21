@@ -1,0 +1,54 @@
+.wrapper {
+    width: 100%;
+    color: white;
+    position: fixed;
+    font-size: 14px;
+    height: 60px;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    background: black;
+}
+
+.inner {
+    padding: 10px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    @media screen and (max-width: 600px) {
+        flex-direction: column;
+        height: 100px;
+    }
+}
+.header__nav {
+    display: flex;
+    align-items: center;
+    img {
+        height: 25px;
+        margin-left: 40px;
+        cursor: pointer;
+    }
+    span {
+        padding: 0 20px;
+        cursor: pointer;
+    }
+}
+.header__action {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+    img {
+        width: 32px;
+        height: 32px;
+        object-fit: cover;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+}
+.icon {
+    font-size: 2.2rem;
+    margin: 0px 15px;
+    cursor: pointer;
+}
+.search-input {
+}
