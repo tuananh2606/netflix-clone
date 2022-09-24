@@ -1,53 +1,45 @@
 import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import classNames from 'classnames/bind';
 import { AiOutlineSearch } from 'react-icons/ai';
 
-import request from '~/utils/request';
 import { useDebounce } from '~/hooks';
-import * as searchService from '~/services/searchService';
 import styles from './Search.module.scss';
 import { getSearchMovies } from '~/features/ApiRequest/searchSlide';
+import { useNavigate } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 
 const Search = () => {
     const [isActive, setIsActive] = useState(false);
     const [searchValue, setSearchValue] = useState('');
-    const [searchResult, setSearchResult] = useState([]);
     const debouncedValue = useDebounce(searchValue, 500);
 
-    const dispatch = useDispatch();
+    const navigate = useNavigate();
 
-    const searchResults = useSelector((state) => state.search);
+    const dispatch = useDispatch();
     useEffect(() => {
+        // if (!debouncedValue.trim()) {
+        //     setSearchResult([]);
+        //     return;
+        // }
         if (debouncedValue) {
             dispatch(getSearchMovies(debouncedValue));
-            setSearchResult(searchResults.result);
         }
     }, [debouncedValue, dispatch]);
-
-    // useEffect(() => {
-    //     if (!debouncedValue.trim()) {
-    //         setSearchResult([]);
-    //         return;
-    //     }
-
-    //     const fetchApi = async () => {
-    //         const data = await searchService.search(request.requestSearchMovies, debouncedValue);
-    //         setSearchResult(data.results);
-    //     };
-    //     fetchApi();
-    // }, [debouncedValue]);
 
     const handleClick = () => {
         setIsActive((current) => !current);
     };
 
     const handleChange = (e) => {
-        const searchValue = e.target.value;
+        const searchValue = e.target.value.trimStart();
         if (!searchValue.startsWith(' ')) {
             setSearchValue(searchValue);
+            navigate(`/search`);
+        }
+        if (searchValue === '') {
+            navigate(`/`);
         }
     };
 
@@ -56,7 +48,7 @@ const Search = () => {
             <input
                 className={cx(isActive ? 'active' : '')}
                 type="text"
-                placeholder="Search"
+                placeholder=" Search"
                 onChange={handleChange}
             ></input>
             <div className={cx('search-icon')}>

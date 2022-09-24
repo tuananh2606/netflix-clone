@@ -28,10 +28,17 @@
         margin-left: 40px;
         cursor: pointer;
     }
-    span {
-        padding: 0 20px;
+}
+.navbar {
+    li {
+        padding-left: 20px;
+        display: inline-block;
         cursor: pointer;
     }
+}
+.nav-link {
+    text-decoration: none;
+    color: white;
 }
 .header__action {
     display: flex;

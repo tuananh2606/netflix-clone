@@ -27,6 +27,7 @@ function SlideList(props) {
     const [movies, setMovies] = useState([]);
 
     const searchValue = useSelector((state) => state.search);
+
     useEffect(() => {
         setMovies(searchValue.result);
     }, [searchValue.result]);

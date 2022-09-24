@@ -1,8 +1,21 @@
 .wrapper {
     margin-top: 20px;
     position: relative;
-    padding-top: 56.25%;
+    //padding-top: 56.25%;
     color: white;
+    height: 90vh;
+}
+
+.trailer-video {
+    position: absolute;
+    top: 8.5%;
+    left: 15%;
+    box-shadow: 0 15px 40px rgba(#171818, 0.2);
+}
+.image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .video {
@@ -13,12 +26,12 @@
 
 .info-video {
     position: absolute;
-    top: 140px;
+    top: 120px;
     left: 36px;
 }
 
 .title {
-    font-size: 60px;
+    font-size: 55px;
     transition: all 0.3s;
     @media screen and (max-width: 800px) {
         font-size: 40px;
@@ -41,17 +54,46 @@
     }
 }
 
-.mute-btn {
+.featured-btn {
+    height: 50px;
+    margin-bottom: 10px;
+
+    .watchBtn {
+        width: 150px;
+        color: white;
+        margin-left: 10px;
+        background-color: transparent;
+    }
+    .playBtn {
+        width: 100px;
+    }
+}
+
+.releaseDate {
+    color: rgb(209 213 219);
+    font-size: 14px;
+    line-height: 1.27rem;
+    margin-bottom: 10px;
+}
+
+.playBtn,
+.watchBtn {
+    border: 1px solid rgb(209 213 219);
+    height: 100%;
+    font-size: 18px;
+    cursor: pointer;
+}
+.close-btn {
     position: absolute;
-    right: 5%;
-    top: 50%;
-    width: 3.2rem;
-    height: 3.2rem;
+    right: -10%;
+    top: 45%;
+    width: 3.6rem;
+    height: 3.6rem;
     cursor: pointer;
     border-radius: 50%;
     padding: 6px;
-    color: #bbb;
-    border: #fff solid 1px;
+    color: #fff;
+    border: rgb(253 186 116) solid 1px;
     transition: all 0.3s;
     transform: scale(1);
     &:hover {
@@ -59,15 +101,5 @@
         background-color: rgba(211, 211, 211, 0.178);
         transform: scale(1.2);
         transition: all 0.3s;
-    }
-    @media screen and (max-width: 800px) {
-        height: 30px;
-        width: 30px;
-        padding: 4px;
-    }
-    @media screen and (max-width: 600px) {
-        height: 20px;
-        width: 20px;
-        padding: 1px;
     }
 }
