@@ -1,13 +1,30 @@
+import { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import classNames from 'classnames/bind';
-
-import Search from '../Search';
+import { useSelector, useDispatch } from 'react-redux';
+import { logout } from '~/features/userSlice';
+import { auth } from '~/firebase';
+import { FaBars, FaCog, FaSignOutAlt } from 'react-icons/fa';
 import { IoMdNotificationsOutline, IoMdArrowDropdown } from 'react-icons/io';
+
+import DropdownItem from '~/components/DropdownItem';
+import Search from '../Search';
 import styles from './Header.module.scss';
 
 const cx = classNames.bind(styles);
 
 function Header() {
+    const [isOpen, setOpen] = useState(false);
+    const [isNavExpand, setNavExpand] = useState(false);
+    const currentUser = useSelector((state) => state.user.user);
+    const dispatch = useDispatch();
+
+    const logoutOfApp = () => {
+        // dispatch to the store with the logout action
+        dispatch(logout());
+        // sign out function from firebase
+        auth.signOut();
+    };
     return (
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
@@ -18,56 +35,70 @@ function Header() {
                             alt="Netflix"
                         />
                     </Link>
-                    <ul className={cx('navbar')}>
-                        <li>
-                            <NavLink className={cx('nav-link')} to={'/'}>
-                                Homepage
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink className={cx('nav-link')} to={'/'}>
-                                Series
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink className={cx('nav-link')} to={'/'}>
-                                Movies
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink className={cx('nav-link')} to={'/'}>
-                                New and Popular
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink className={cx('nav-link')} to={'/'}>
-                                My List
-                            </NavLink>
-                        </li>
-                    </ul>
-                    {/* <NavLink className={cx('nav-link')} to={'/'}>
-                        <span>Homepage</span>
-                    </NavLink>
-                    <span>Series</span>
-                    <span>Movies</span>
-                    <span>New and Popular</span>
-                    <span>My List</span> */}
+                    <FaBars className={cx('bars')} onClick={() => setNavExpand(!isNavExpand)} />
+                    <div className={cx(isNavExpand ? 'navbar-expand' : 'navbar')}>
+                        <ul>
+                            <li>
+                                <NavLink className={cx('nav-link')} to={'/'} onClick={() => setNavExpand(false)}>
+                                    Homepage
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink className={cx('nav-link')} to={'/series'} onClick={() => setNavExpand(false)}>
+                                    Series
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink className={cx('nav-link')} to={'/'}>
+                                    Movies
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink className={cx('nav-link')} to={'/'}>
+                                    New and Popular
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink className={cx('nav-link')} to={'/'}>
+                                    My List
+                                </NavLink>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
                 <div className={cx('header__action')}>
-                    <Search />
-                    <span>KID</span>
-                    <IoMdNotificationsOutline className={cx('icon')} />
-                    <div className={cx('profile')}>
-                        <img
-                            src="https://images.pexels.com/photos/6899260/pexels-photo-6899260.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
-                            alt=""
-                        />
-                    </div>
-                    <IoMdArrowDropdown className={cx('icon')} />
-                    <div className="options">
-                        {/* <span>Settings</span>
-                        <span>Logout</span> */}
-                    </div>
+                    {currentUser ? (
+                        <>
+                            <Search />
+                            <span>KID</span>
+                            <IoMdNotificationsOutline className={cx('icon')} />
+                            <div className={cx('profile')}>
+                                <img
+                                    src="https://images.pexels.com/photos/6899260/pexels-photo-6899260.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
+                                    alt=""
+                                />
+                            </div>
+
+                            <div className={cx('options-btn')}>
+                                <IoMdArrowDropdown className={cx('icon')} onClick={() => setOpen(!isOpen)} />
+                                <div className={cx('dropdown-menu', isOpen ? 'active' : 'inactive')}>
+                                    <ul>
+                                        <DropdownItem icon={<FaCog />} title={'Settings'} />
+                                        <DropdownItem icon={<FaSignOutAlt />} title={'Logout'} onClick={logoutOfApp} />
+                                    </ul>
+                                </div>
+                            </div>
+                        </>
+                    ) : (
+                        <>
+                            <Link to={'/login'} className={cx('login-link')}>
+                                Sign In
+                            </Link>
+                            <Link to={'/register'} className={cx('register-link')}>
+                                Sign Up
+                            </Link>
+                        </>
+                    )}
                 </div>
             </div>
         </header>

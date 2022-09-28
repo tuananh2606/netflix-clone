@@ -1,11 +1,11 @@
 import classNames from 'classnames/bind';
 
 import SlideList from '~/components/SlideList';
-import styles from './SearchPanel.module.scss';
+import styles from './SearchPage.module.scss';
 
 const cx = classNames.bind(styles);
 
-function SearchPane() {
+function SearchPage() {
     return (
         <div className={cx('wrapper')}>
             <div className={cx('container')}>
@@ -15,4 +15,4 @@ function SearchPane() {
     );
 }
 
-export default SearchPane;
+export default SearchPage;

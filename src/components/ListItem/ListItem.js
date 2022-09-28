@@ -1,9 +1,14 @@
+import { createContext } from 'react';
 import classNames from 'classnames/bind';
+
 import styles from './ListItem.module.scss';
 
+export const MovieContext = createContext();
 const cx = classNames.bind(styles);
 
-function ListItem({ data, imageUrl }) {
+function ListItem(props) {
+    const { data, imageUrl } = props;
+
     return (
         <div className={cx('wrapper')}>
             <div className={cx('card')}>

@@ -1,0 +1,34 @@
+.wrapper {
+    min-width: 1000px;
+    background-color: #000;
+}
+.container {
+    margin: 0 100px;
+    padding: 70px 45px;
+    padding-bottom: 0;
+    width: 100%;
+    a {
+        font-size: 13px;
+        padding-bottom: 10px;
+        text-decoration: none;
+        color: #737373;
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
+.title {
+    padding-left: 50px;
+}
+.list {
+    display: flex;
+    margin-top: 20px;
+    min-width: 190px;
+    padding-bottom: 20px;
+    width: 100%;
+}
+.column {
+    padding: 10px 50px;
+    display: flex;
+    flex-direction: column;
+}

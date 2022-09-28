@@ -5,7 +5,7 @@ export const search = async (request, q) => {
         const res = await httpRequest.get(request, {
             params: {
                 language: 'en-US',
-                query: q,
+                query: `${q}`,
                 page: 1,
                 include_adult: 'false',
             },
