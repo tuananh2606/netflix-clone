@@ -1,5 +1,4 @@
-import { useState, useEffect, createContext } from 'react';
-import { useSelector } from 'react-redux';
+import { useState, useEffect } from 'react';
 import classNames from 'classnames/bind';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
@@ -11,8 +10,6 @@ import ListItem from '~/components/ListItem';
 import styles from './SlideList.module.scss';
 
 const cx = classNames.bind(styles);
-
-export const MovieContext = createContext();
 
 function SampleNextArrow(props) {
     const { onClick } = props;
@@ -27,12 +24,6 @@ function SamplePrevArrow(props) {
 function SlideList(props) {
     const { fetchURL, heading } = props;
     const [movies, setMovies] = useState([]);
-
-    const searchValue = useSelector((state) => state.search);
-
-    useEffect(() => {
-        setMovies(searchValue.result.results);
-    }, [searchValue.result.results]);
 
     useEffect(() => {
         const fetchApi = async () => {
