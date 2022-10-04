@@ -22,7 +22,7 @@ function SamplePrevArrow(props) {
 }
 
 function SlideList(props) {
-    const { fetchURL, heading } = props;
+    const { fetchURL, heading, category } = props;
     const [movies, setMovies] = useState([]);
 
     useEffect(() => {
@@ -38,7 +38,7 @@ function SlideList(props) {
         nextArrow: <SampleNextArrow />,
         prevArrow: <SamplePrevArrow />,
         dots: false,
-        infinite: false,
+        infinite: true,
         speed: 500,
         slidesToShow: 6,
         slidesToScroll: 2,
@@ -48,7 +48,7 @@ function SlideList(props) {
                 breakpoint: 1024,
                 settings: {
                     slidesToShow: 3,
-                    slidesToScroll: 3,
+                    slidesToScroll: 1,
                     infinite: true,
                     dots: false,
                 },
@@ -57,8 +57,8 @@ function SlideList(props) {
                 breakpoint: 600,
                 settings: {
                     slidesToShow: 2,
-                    slidesToScroll: 2,
-                    initialSlide: 2,
+                    slidesToScroll: 1,
+                    initialSlide: 0,
                 },
             },
             {
@@ -85,7 +85,7 @@ function SlideList(props) {
                             if (item.poster_path === null) {
                                 imageUrl = `https://image.tmdb.org/t/p/w500/${item.backdrop_path || item.poster_path}`;
                             }
-                            return <ListItem key={index} data={item} imageUrl={imageUrl} />;
+                            return <ListItem key={index} data={item} category={category} imageUrl={imageUrl} />;
                         })}
                 </Slider>
             </div>

@@ -1,0 +1,130 @@
+.banner {
+    margin-top: 58px;
+    height: 100vh;
+    position: relative;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    &::after {
+        background: linear-gradient(
+            0deg,
+            #181818 0,
+            hsla(0, 0%, 9%, 0.987) 1.62%,
+            hsla(0, 0%, 9%, 0.951) 3.1%,
+            hsla(0, 0%, 9%, 0.896) 4.5%,
+            hsla(0, 0%, 9%, 0.825) 5.8%,
+            hsla(0, 0%, 9%, 0.741) 7.06%,
+            hsla(0, 0%, 9%, 0.648) 8.24%,
+            hsla(0, 0%, 9%, 0.55) 9.42%,
+            hsla(0, 0%, 9%, 0.45) 10.58%,
+            hsla(0, 0%, 9%, 0.352) 11.76%,
+            hsla(0, 0%, 9%, 0.259) 12.94%,
+            hsla(0, 0%, 9%, 0.175) 14.2%,
+            hsla(0, 0%, 9%, 0.104) 15.5%,
+            hsla(0, 0%, 9%, 0.049) 16.9%,
+            hsla(0, 0%, 9%, 0.013) 18.38%,
+            hsla(0, 0%, 9%, 0) 20%
+        );
+        content: '';
+        height: 100%;
+        left: 0;
+        position: absolute;
+        width: 100%;
+    }
+}
+
+.container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 800px;
+    min-width: 500px;
+    width: 35%;
+    z-index: 2;
+    color: #fff;
+    top: 0;
+    margin-top: 58px;
+    left: 0;
+    position: absolute;
+
+    &::after {
+        background: linear-gradient(
+            90deg,
+            #181818 10%,
+            hsla(0, 0%, 9%, 0.98) 20%,
+            hsla(0, 0%, 9%, 0.97) 25%,
+            hsla(0, 0%, 9%, 0.95) 35%,
+            hsla(0, 0%, 9%, 0.94) 40%,
+            hsla(0, 0%, 9%, 0.92) 45%,
+            hsla(0, 0%, 9%, 0.9) 50%,
+            hsla(0, 0%, 9%, 0.87) 55%,
+            hsla(0, 0%, 9%, 0.82) 60%,
+            hsla(0, 0%, 9%, 0.75) 65%,
+            hsla(0, 0%, 9%, 0.63) 70%,
+            hsla(0, 0%, 9%, 0.45) 75%,
+            hsla(0, 0%, 9%, 0.27) 80%,
+            hsla(0, 0%, 9%, 0.15) 85%,
+            hsla(0, 0%, 9%, 0.08) 90%,
+            hsla(0, 0%, 9%, 0.03) 95%,
+            hsla(0, 0%, 9%, 0)
+        );
+        bottom: 0;
+        content: '';
+        left: 0;
+        position: absolute;
+        right: -200px;
+        top: 0;
+        z-index: -1;
+    }
+
+    .film-info-wrapper {
+        position: absolute;
+        left: 5vw;
+        height: 100%;
+    }
+
+    .title {
+        margin-top: 40%;
+        font-size: 4rem;
+    }
+    .overview {
+        padding-top: 16px;
+    }
+    .info-talent {
+        padding-top: 16px;
+        .starring-span,
+        .creators-span {
+            color: #a3a3a3;
+        }
+    }
+}
+
+.film-info {
+    color: #a3a3a3;
+    .info-spacer {
+        margin: 0 4px;
+    }
+    a {
+        color: #a3a3a3;
+        text-decoration: none;
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
+
+.video {
+    margin-top: 50px;
+    position: relative;
+    padding: 25px 5vw;
+    .header {
+        h2 {
+            color: #fff;
+            font-size: 3rem;
+            font-weight: 400;
+            line-height: 34px;
+        }
+    }
+}

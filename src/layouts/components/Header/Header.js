@@ -44,12 +44,12 @@ function Header() {
                                 </NavLink>
                             </li>
                             <li>
-                                <NavLink className={cx('nav-link')} to={'/series'} onClick={() => setNavExpand(false)}>
+                                <NavLink className={cx('nav-link')} to={'/tv'} onClick={() => setNavExpand(false)}>
                                     Series
                                 </NavLink>
                             </li>
                             <li>
-                                <NavLink className={cx('nav-link')} to={'/'}>
+                                <NavLink className={cx('nav-link')} to={'/movie'}>
                                     Movies
                                 </NavLink>
                             </li>

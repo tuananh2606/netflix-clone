@@ -10,7 +10,7 @@ import { getSearchMovies } from '~/features/searchSlide';
 
 const cx = classNames.bind(styles);
 
-const Search = (props) => {
+const Search = () => {
     const [isActive, setIsActive] = useState(false);
     const [searchValue, setSearchValue] = useState('');
     const debouncedValue = useDebounce(searchValue, 500);

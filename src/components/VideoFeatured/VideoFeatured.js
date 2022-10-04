@@ -8,6 +8,7 @@ import { AiOutlineClose } from 'react-icons/ai';
 import * as sliderServices from '~/services/sliderService';
 import request from '~/utils/request';
 import styles from './VideoFeatured.module.scss';
+import { Link } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 
@@ -29,24 +30,24 @@ function VideoFeatured() {
         const fetchVideos = async (id) => {
             try {
                 const { data } = await axios.get(
-                    `https://api.themoviedb.org/3/movie/${id}?api_key=dfc861413c4bcb92717c98ba8d0b4338&append_to_response=videos`,
+                    `${process.env.REACT_APP_BASE_URL}/movie/${id}/videos?api_key=${process.env.REACT_APP_IMDB_API_KEY}`,
                 );
-                if (data.videos.results.length === 0) {
+                if (data.results.length === 0) {
                     const { data } = await axios.get(
-                        `https://api.themoviedb.org/3/tv/${id}?api_key=dfc861413c4bcb92717c98ba8d0b4338&append_to_response=videos`,
+                        `${process.env.REACT_APP_BASE_URL}/tv/${id}/videos?api_key=${process.env.REACT_APP_IMDB_API_KEY}`,
                     );
-                    setTrailer(data.videos.results[0]);
-                } else if (data.videos && data.videos.results) {
-                    const trailer = data.videos.results.find(
+                    setTrailer(data.results[0]);
+                } else if (data && data.results) {
+                    const trailer = data.results.find(
                         (vid) => vid.name === 'Official Trailer' || 'Official Trailer 2' || 'Official Teaser',
                     );
-                    setTrailer(trailer ? trailer : data.videos.results[0]);
+                    setTrailer(trailer ? trailer : data.results[0]);
                 }
             } catch (error) {
                 const { data } = await axios.get(
-                    `https://api.themoviedb.org/3/tv/${id}?api_key=dfc861413c4bcb92717c98ba8d0b4338&append_to_response=videos`,
+                    `${process.env.REACT_APP_BASE_URL}/tv/${id}/videos?api_key=${process.env.REACT_APP_IMDB_API_KEY}`,
                 );
-                setTrailer(data.videos.results[0]);
+                setTrailer(data.results[0]);
             }
         };
         if (idMovie !== 0) {
@@ -98,6 +99,7 @@ function VideoFeatured() {
             },
         ],
     };
+
     return (
         <>
             <Slider ref={sliderRef} {...settings}>
@@ -116,7 +118,9 @@ function VideoFeatured() {
                                 <div className={cx('info-video')}>
                                     <h5 className={cx('title')}>{movie.title || movie.name}</h5>
                                     <div className={cx('featured-btn')}>
-                                        <button className={cx('playBtn')}>Play</button>
+                                        <Link to={`/${movie.media_type}/${movie.id}`}>
+                                            <button className={cx('playBtn')}>Play</button>
+                                        </Link>
                                         <button
                                             className={cx('watchBtn')}
                                             onClick={() => {

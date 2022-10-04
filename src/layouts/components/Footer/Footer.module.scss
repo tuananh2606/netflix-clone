@@ -1,4 +1,7 @@
 .wrapper {
+    position: relative;
+    bottom: 0;
+    width: 100%;
     min-width: 1000px;
     background-color: #000;
 }
@@ -15,6 +18,10 @@
         &:hover {
             text-decoration: underline;
         }
+    }
+    @media screen and (max-width: 768px) {
+        margin: 0;
+        padding: 10px 15px;
     }
 }
 .title {
