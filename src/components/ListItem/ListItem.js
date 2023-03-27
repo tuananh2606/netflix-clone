@@ -14,7 +14,7 @@ function ListItem(props) {
         <Link to={link}>
             <div className={cx('wrapper')}>
                 <div className={cx('card')}>
-                    <img className={cx('image')} src={imageUrl} alt="Ảnh" />
+                    <img className={cx('image')} src={imageUrl} alt="Ảnh" loading="lazy" width="1rem" height="1rem" />
                     <div className="card-body">
                         <div className={cx('title')}>{data.title || data.name}</div>
                     </div>

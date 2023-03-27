@@ -61,11 +61,7 @@ const MovieDetails = () => {
                                 <span className={cx('info-spacer')}> | </span>
                                 <span className="item-genres">
                                     {' '}
-                                    {detailsFilm.genres &&
-                                        detailsFilm.genres
-                                            .slice(0, 2)
-                                            .map((genre, i) => genre.name)
-                                            .join(', ')}
+                                    {detailsFilm.genres && detailsFilm.genres.slice(0, 2).map((genre, i) => genre.name)}
                                 </span>
                                 <span role="presentation" className={cx('info-spacer')}>
                                     {' '}
