@@ -1,5 +1,6 @@
 import classNames from 'classnames/bind';
 import { Link } from 'react-router-dom';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 import styles from './ListItem.module.scss';
 
@@ -14,7 +15,13 @@ function ListItem(props) {
         <Link to={link}>
             <div className={cx('wrapper')}>
                 <div className={cx('card')}>
-                    <img className={cx('image')} src={imageUrl} alt="Ảnh" loading="lazy" width="1rem" height="1rem" />
+                    <LazyLoadImage
+                        className={cx('image')}
+                        alt="Ảnh"
+                        effect="blur"
+                        src={imageUrl} // use normal <img> attributes as props
+                    />
+                    {/* <img className={cx('image')} src={imageUrl} alt="Ảnh" loading="lazy" width="1rem" height="1rem" /> */}
                     <div className="card-body">
                         <div className={cx('title')}>{data.title || data.name}</div>
                     </div>
