@@ -8,7 +8,6 @@ const cx = classNames.bind(styles);
 
 function ListItem(props) {
     const { data, imageUrl, category } = props;
-
     const link = `/${data.media_type ? data.media_type : category}/${data.id}`;
 
     return (
